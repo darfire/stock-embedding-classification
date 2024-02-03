@@ -34,11 +34,21 @@ Given the data above, we will try to classify the companies into their respectiv
 
 ## The approach
 
-We will compute the embeddings of the company names and symbols using the [sentence-transformers](https://www.sbert.net/) library, which provides a very simple interface to a number of pretrained LLM models. We will then use the embeddings to classify the companies' sectors and industries. The model we will be using will be a simple logistic regression model, which will be trained on a subset of the data and tested on the rest.
+We will compute the embeddings of the company names and symbols using the [sentence-transformers](https://www.sbert.net/) library, which provides a very simple interface to a number of pretrained LLM models. We will then use the embeddings to classify the companies' sectors and industries.
 
-## Classifying sectors and sectors
+The model we will be using will be a simple logistic regression model, which will be trained on a subset of the data and tested on the rest. The classification classes will be weighted by the inverse of their frequency in the training set, to account for the class imbalance.
 
-## Discussion
+We will use both the accuracy and the top-5 accuracy as metrics to evaluate the model's performance. After classifying the companies using either the company name or symbol embeddings, we get the following results:
+
+[ result table here ]
+
+As can be seen, classifying sectors yields better results than classifying industries. This is to be expected, as there are fewer sectors than industries, and the classes are more balanced. The top-5 accuracy is also higher, which indicates that the model is able to correctly classify the company in the top 5 most likely classes more often than not.
+
+Also, as expected, using the company name embeddings yields better results than using the symbol embeddings. This is because the company name contains more information than the symbol, and the embeddings are able to capture this information. "Advanced Micro Devices, Inc." is more informative than "AMD", for example. To test this, let's see a sample of companies and the index of the correct class:
+
+[ sample table here ]
+
+However, we can see that in both cases the model has a much higher accuracy than random guessing, suggesting that the embeddings do contain some information about the companies, even if we only use the stock symbol.
 
 ## Experiment #1: Does prompting matter?
 
