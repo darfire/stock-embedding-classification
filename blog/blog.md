@@ -42,7 +42,7 @@ The model we will be using will be a simple logistic regression model, which wil
 
 We will use both the accuracy and the top-5 accuracy as metrics to evaluate the model's performance. After classifying the companies using either the company name or symbol embeddings, we get the following results:
 
-[ result table here ]
+[ table here]
 
 As can be seen, classifying sectors yields better results than classifying industries. This is to be expected, as there are fewer sectors than industries, and the classes are more balanced. The top-5 accuracy is also higher, which indicates that the model is able to correctly classify the company in the top 5 most likely classes more often than not.
 
@@ -66,12 +66,44 @@ We will be using 4 prompts:
 
 After running the experiment the results are as follows:
 
+| X      | Y        | variation      |   accuracy |   accuracy_top5 |
+|:-------|:---------|:---------------|-----------:|----------------:|
+| Name   | Industry | Default prompt | 0.400835   |        0.642589 |
+| Name   | Industry | Better prompt  | 0.405428   |        0.639248 |
+| Name   | Industry | Bad prompt 1   | 0.344468   |        0.589979 |
+| Name   | Industry | Bad prompt 2   | 0.245511   |        0.475157 |
+| Name   | Sector   | Default prompt | 0.572443   |        0.912735 |
+| Name   | Sector   | Better prompt  | 0.579123   |        0.915658 |
+| Name   | Sector   | Bad prompt 1   | 0.54405    |        0.903132 |
+| Name   | Sector   | Bad prompt 2   | 0.491441   |        0.871816 |
+| Symbol | Industry | Default prompt | 0.217954   |        0.374948 |
+| Symbol | Industry | Better prompt  | 0.132359   |        0.28643  |
+| Symbol | Industry | Bad prompt 1   | 0.120251   |        0.260543 |
+| Symbol | Industry | Bad prompt 2   | 0.00626305 |        0.034238 |
+| Symbol | Sector   | Default prompt | 0.270981   |        0.759081 |
+| Symbol | Sector   | Better prompt  | 0.219207   |        0.711065 |
+| Symbol | Sector   | Bad prompt 1   | 0.210438   |        0.717745 |
+| Symbol | Sector   | Bad prompt 2   | 0.0960334  |        0.553653 |
+
 
 ## Experiment #2: Using a more complex model
 
 Up to now we used a simple logistic regression model to classify the companies. We will now use a more complex model, a neural network with 2 hidden layers. The results are as follows:
 
+| X      | Y        | variation          |   accuracy |   accuracy_top5 |
+|:-------|:---------|:-------------------|-----------:|----------------:|
+| Name   | Industry | LogisticRegression |   0.4      |        0.643006 |
+| Name   | Sector   | LogisticRegression |   0.57286  |        0.912735 |
+| Symbol | Industry | LogisticRegression |   0.217954 |        0.374948 |
+| Symbol | Sector   | LogisticRegression |   0.271399 |        0.759499 |
+| Name   | Industry | MLPClassifier      |   0.475992 |        0.653027 |
+| Name   | Sector   | MLPClassifier      |   0.696033 |        0.949896 |
+| Symbol | Industry | MLPClassifier      |   0.387474 |        0.505637 |
+| Symbol | Sector   | MLPClassifier      |   0.513987 |        0.881837 |
+
 
 ## Experiment #3: Using various embedding models
 
 Finally, let's compare how various embeddings models perform on name->sector classification. We will use various models supported by the sentence-transformers library, and compare their performance. The results are as follows:
+
+![experiment 3](https://raw.githubusercontent.com/darfire/stock-embedding-classification/master/blog/assets/exp3.png)
