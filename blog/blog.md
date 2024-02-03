@@ -1,5 +1,7 @@
 # Classifying companies using LLM embeddings, an experiment
 
+![header](https://raw.githubusercontent.com/darfire/stock-embedding-classification/master/blog/assets/stock-classification-embeddings-header.webp)
+
 Large language models(LLM) have ushured in new tools an opportunities in text processing and undestanding. One of the most interesting applications is the ability to embed documents into a vector space and use these embeddings to look-up similar documents, or answers that are relevant to a particular question. This is at the base of  Retrieval-Augmented Generation (RAG) models, which have been shown to be very effective in question answering tasks.
 
 In short, embeddings are a way to represent a document in a vector space, with a list of numbers. The idea is that documents that are similar will be close to each other in this vector space. This is a very powerful idea, as it allows us to use the same tools that have been developed for vector spaces, such as nearest neighbors, to find similar documents. They are learned by training a neural network to predict the next word in a sequence of words, given the previous words. The embeddings are the weights of the neural network, and are learned by backpropagation. Usually they are pretrained on a very large corpus of generic text, such as Common Crawl, and then optionally fine-tuned on a specific task.
